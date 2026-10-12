@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vortex | Entra al vórtice</title>
+  <meta name="description" content="Vortex: ropa urbana oversize con alma rock, sin etiquetas y para todos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <a class="logo" href="#inicio">Vortex</a>
+  <button id="menuBtn" aria-label="Abrir menú" aria-expanded="false">Menú</button>
+  <nav id="nav">
+    <a href="#marca">Marca</a>
+    <a href="#catalogo">Catálogo</a>
+    <a href="#estilo">Tu estilo</a>
+    <a href="#contacto">Contacto</a>
+    <a href="#admin" id="adminLink">Admin</a>
+  </nav>
+</header>
+
+<main>
+  <!-- 1. LANDING: marca, mensaje y navegación -->
+  <section id="inicio" class="hero">
+    <svg id="spiral" viewBox="-200 -200 400 400" aria-hidden="true"></svg>
+    <div class="hero-txt">
+      <h1>Entra al vórtice</h1>
+      <p>Ropa urbana oversize con alma rock, para quien no cabe en una sola etiqueta. Unisex, para jóvenes y adultos.</p>
+      <a class="btn" href="#catalogo">Ver el catálogo</a>
+    </div>
+  </section>
+
+  <section id="marca" class="wrap two">
+    <div>
+      <h2>Sin etiquetas, con carácter</h2>
+    </div>
+    <div class="prose">
+      <p>Un vórtice mezcla todo lo que toca. Vortex hace lo mismo con los estilos: la actitud del rock, la comodidad de la calle y un toque de elegancia oscura.</p>
+      <p>Cortes amplios, telas cómodas y piezas que se combinan entre sí. Las puede usar cualquiera, a cualquier edad.</p>
+      <p>Somos Alexander Antunez y Valeria López, y esta es nuestra marca.</p>
+    </div>
+  </section>
+
+  <!-- 2. CATÁLOGO -->
+  <section id="catalogo" class="wrap">
+    <h2>Catálogo</h2>
+    <div id="filters" class="filters" role="group" aria-label="Filtrar por categoría"></div>
+    <div id="grid" class="grid"></div>
+  </section>
+
+  <!-- 5. IA APLICADA -->
+  <section id="estilo" class="wrap two">
+    <div>
+      <h2>Arma tu outfit</h2>
+      <p class="mute">Cuéntanos tu estilo y la ocasión. El asistente te propone una combinación con prendas del catálogo.</p>
+    </div>
+    <div>
+      <form id="styleForm" class="form">
+        <label>Estilo
+          <select id="estiloSel">
+            <option value="rock">Rock</option>
+            <option value="urbano">Urbano relajado</option>
+            <option value="elegante">Elegante oscuro</option>
+          </select>
+        </label>
+        <label>Ocasión
+          <select id="ocasionSel">
+            <option value="diario">Día a día</option>
+            <option value="salir">Salir en la noche</option>
+            <option value="concierto">Concierto</option>
+          </select>
+        </label>
+        <button class="btn" type="submit">Proponer outfit</button>
+      </form>
+      <div id="outfit" class="outfit" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- 3. CONTACTO REAL -->
+  <section id="contacto" class="wrap two">
+    <div>
+      <h2>Escríbenos</h2>
+      <p class="mute">Pregunta por una prenda, tallas o pedidos. Respondemos al correo que nos dejes.</p>
+    </div>
+    <form id="contactForm" class="form">
+      <label>Nombre <input name="nombre" required autocomplete="name"></label>
+      <label>Correo <input name="correo" type="email" required autocomplete="email"></label>
+      <label>Prenda de interés
+        <select name="prenda" id="prendaSel"><option value="">Ninguna en particular</option></select>
+      </label>
+      <label>Mensaje <textarea name="mensaje" rows="4" required></textarea></label>
+      <button class="btn" type="submit">Enviar mensaje</button>
+      <p id="contactMsg" class="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <!-- 4. PANEL ADMIN -->
+  <section id="admin" class="wrap" hidden>
+    <h2>Panel de administración</h2>
+    <form id="loginForm" class="form narrow">
+      <label>Usuario <input id="user" autocomplete="username" required></label>
+      <label>Contraseña <input id="pass" type="password" autocomplete="current-password" required></label>
+      <button class="btn" type="submit">Entrar</button>
+      <p id="loginMsg" class="status" aria-live="polite"></p>
+    </form>
+    <div id="panel" hidden>
+      <button id="logout" class="btn ghost" type="button">Cerrar sesión</button>
+      <h3>Agregar prenda</h3>
+      <form id="addForm" class="form row">
+        <input name="nombre" placeholder="Nombre" required>
+        <input name="precio" type="number" min="0" placeholder="Precio (COP)" required>
+        <select name="categoria">
+          <option value="camisetas">Camisetas</option><option value="buzos">Buzos</option>
+          <option value="chaquetas">Chaquetas</option><option value="pantalones">Pantalones</option>
+          <option value="accesorios">Accesorios</option>
+        </select>
+        <button class="btn" type="submit">Agregar</button>
+      </form>
+      <h3>Prendas</h3>
+      <ul id="adminProducts" class="list"></ul>
+      <h3>Mensajes recibidos</h3>
+      <ul id="adminMsgs" class="list"></ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p><strong>Vortex</strong>. Entra al vórtice.</p>
+  <p>Alexander Antunez y Valeria López</p>
+  <p>
+    <a href="mailto:alexanderantunez740@gmail.com">alexanderantunez740@gmail.com</a> ·
+    <a href="https://github.com/PoethicGhost" target="_blank" rel="noopener">GitHub</a> ·
+    <a href="https://instagram.com/poethicghost" target="_blank" rel="noopener">Instagram</a>
+  </p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

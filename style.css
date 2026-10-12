@@ -1,0 +1,126 @@
+/* ===== Variables: la paleta de Vortex vive aquí ===== */
+:root {
+  --bg: #09090b;
+  --panel: #15131b;
+  --line: #2a2633;
+  --violet: #8b3dff;
+  --violet-soft: #b983ff;
+  --bone: #ece8f2;
+  --mute: #a69fb5;
+  --display: "Syne", "Arial Black", sans-serif;
+  --body: "DM Sans", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+body { background: var(--bg); color: var(--bone); font: 1rem/1.6 var(--body); }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.05; }
+h2 { font-size: clamp(1.9rem, 4vw, 3rem); margin-bottom: 1rem; }
+h3 { font-size: 1.2rem; margin: 2rem 0 .75rem; }
+.mute { color: var(--mute); max-width: 38ch; }
+:focus-visible { outline: 2px solid var(--violet-soft); outline-offset: 3px; }
+
+/* ===== Navegación ===== */
+.top {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .9rem clamp(1rem, 5vw, 3rem);
+  background: rgba(9, 9, 11, .88); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.logo { font: 800 1.4rem var(--display); text-decoration: none; letter-spacing: .02em; }
+#nav { display: flex; gap: 1.5rem; }
+#nav a { text-decoration: none; color: var(--mute); }
+#nav a:hover { color: var(--bone); }
+#menuBtn { display: none; background: none; color: var(--bone); border: 1px solid var(--line); padding: .4rem .8rem; border-radius: 6px; font: inherit; }
+
+/* ===== Hero: el vórtice es lo memorable ===== */
+.hero {
+  position: relative; min-height: 88vh; overflow: hidden;
+  display: flex; align-items: center;
+  padding: 3rem clamp(1rem, 5vw, 3rem);
+}
+#spiral {
+  position: absolute; right: -8%; top: 50%; width: min(95vw, 760px);
+  transform: translateY(-50%); animation: spin 40s linear infinite; opacity: .9;
+}
+#spiral path { fill: none; stroke-linecap: round; }
+.hero-txt { position: relative; max-width: 34rem; animation: enter .9s ease-out both; }
+h1 { font-size: clamp(3.2rem, 11vw, 7rem); font-weight: 800; letter-spacing: -.02em; }
+.hero-txt p { margin: 1.2rem 0 1.8rem; font-size: 1.15rem; color: var(--bone); max-width: 30ch; }
+@keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
+@keyframes enter { from { opacity: 0; transform: translateY(24px); } }
+
+/* ===== Layout general ===== */
+.wrap { padding: 5rem clamp(1rem, 5vw, 3rem); max-width: 1200px; margin: 0 auto; }
+.two { display: grid; grid-template-columns: 1fr 1.3fr; gap: 3rem; align-items: start; }
+.prose p + p { margin-top: 1rem; }
+.prose { max-width: 60ch; }
+
+.btn {
+  display: inline-block; background: var(--violet); color: #fff; border: 0;
+  padding: .8rem 1.5rem; border-radius: 6px; font: 500 1rem var(--body);
+  text-decoration: none; cursor: pointer; transition: background .2s;
+}
+.btn:hover { background: var(--violet-soft); color: #120a1f; }
+.btn.ghost { background: none; border: 1px solid var(--line); }
+
+/* ===== Catálogo ===== */
+.filters { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 2rem; }
+.filters button {
+  background: none; color: var(--mute); border: 1px solid var(--line);
+  padding: .4rem 1rem; border-radius: 999px; font: inherit; cursor: pointer;
+}
+.filters button[aria-pressed="true"] { background: var(--violet); border-color: var(--violet); color: #fff; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1.5rem; }
+.card { display: flex; flex-direction: column; }
+.thumb {
+  aspect-ratio: 1; border-radius: 10px; margin-bottom: .9rem;
+  background: radial-gradient(circle at 50% 40%, #2a1650, var(--panel) 70%);
+  border: 1px solid var(--line);
+}
+.thumb svg { width: 100%; height: 100%; }
+.card h3 { margin: 0 0 .25rem; font-size: 1.1rem; }
+.card p { color: var(--mute); font-size: .92rem; }
+.price { color: var(--violet-soft); font-weight: 500; margin: .4rem 0 .8rem; }
+.card .btn { margin-top: auto; padding: .55rem 1rem; font-size: .95rem; text-align: center; }
+
+/* ===== Formularios ===== */
+.form { display: grid; gap: 1rem; }
+.form.narrow { max-width: 360px; }
+.form.row { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); align-items: end; }
+label { display: grid; gap: .35rem; color: var(--mute); font-size: .95rem; }
+input, select, textarea {
+  background: var(--panel); color: var(--bone); border: 1px solid var(--line);
+  border-radius: 6px; padding: .7rem .8rem; font: inherit; width: 100%;
+}
+.status { min-height: 1.5em; color: var(--violet-soft); }
+.outfit { margin-top: 1.5rem; display: grid; gap: .75rem; }
+.outfit .piece { display: flex; gap: 1rem; align-items: center; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: .6rem; }
+.outfit .piece .thumb { width: 64px; margin: 0; flex: none; }
+.outfit .piece span { color: var(--mute); font-size: .9rem; display: block; }
+
+/* ===== Admin ===== */
+.list { list-style: none; padding: 0; display: grid; gap: .5rem; }
+.list li { display: flex; justify-content: space-between; gap: 1rem; align-items: center; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: .7rem 1rem; }
+.list small { color: var(--mute); display: block; }
+.list button { background: none; border: 1px solid var(--line); color: var(--bone); border-radius: 6px; padding: .3rem .7rem; cursor: pointer; font: inherit; }
+
+footer { border-top: 1px solid var(--line); padding: 2.5rem clamp(1rem, 5vw, 3rem); color: var(--mute); display: grid; gap: .3rem; }
+footer a:hover { color: var(--violet-soft); }
+
+/* ===== Responsive ===== */
+@media (max-width: 760px) {
+  #menuBtn { display: block; }
+  #nav { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--bg); border-bottom: 1px solid var(--line); }
+  #nav.open { display: flex; }
+  #nav a { padding: 1rem clamp(1rem, 5vw, 3rem); }
+  .two { grid-template-columns: 1fr; gap: 1.5rem; }
+  .wrap { padding-block: 3.5rem; }
+  #spiral { right: -40%; opacity: .55; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #spiral, .hero-txt { animation: none; }
+  html { scroll-behavior: auto; }
+}
