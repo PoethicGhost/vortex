@@ -156,3 +156,41 @@ if (detalle) {
     .map(crearTarjeta)
     .join("");
 }
+
+// ===== CONTACTO =====
+// Opcional: pega aquí tu enlace de Formspree para recibir los mensajes en tu correo.
+const FORM_URL = "";
+
+const formulario = document.getElementById("formulario");
+if (formulario) {
+  // si vienes desde "Pedir esta prenda", el mensaje ya viene escrito
+  const pedido = new URLSearchParams(location.search).get("p");
+  if (pedido) {
+    formulario.asunto.value = "Pedido";
+    formulario.mensaje.value = "Hola, quiero pedir: " + pedido;
+  }
+
+  formulario.onsubmit = async (e) => {
+    e.preventDefault();
+    const datos = Object.fromEntries(new FormData(formulario));
+    datos.fecha = new Date().toLocaleString("es-CO");
+
+    // 1) se guarda en el navegador (el panel admin los leerá)
+    guardar("vortex_mensajes", [datos, ...leer("vortex_mensajes", [])]);
+
+    // 2) si pusiste FORM_URL, también se envía a tu correo
+    if (FORM_URL) {
+      try {
+        await fetch(FORM_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(datos)
+        });
+      } catch { /* si falla el envío, el mensaje igual queda guardado */ }
+    }
+
+    formulario.reset();
+    document.getElementById("respuesta").textContent =
+      "¡Mensaje enviado! Gracias, " + datos.nombre + ".";
+  };
+}
