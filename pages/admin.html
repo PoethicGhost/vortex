@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin | Vortex</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- ENCABEZADO -->
+  <header class="barra">
+    <a class="logo" href="../index.html">VORTEX</a>
+    <nav class="menu">
+      <a href="../index.html">Inicio</a>
+      <a href="catalogo.html">Catálogo</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="asistente.html">Asistente IA</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- LOGIN -->
+    <section class="seccion" id="login">
+      <h1 class="titulo">Zona admin</h1>
+      <form class="vineta formulario login" id="formLogin">
+        <label for="usuario">Usuario</label>
+        <input type="text" id="usuario" autocomplete="username" required>
+
+        <label for="clave">Contraseña</label>
+        <input type="password" id="clave" autocomplete="current-password" required>
+
+        <button class="boton" type="submit">Entrar</button>
+        <p id="error" class="respuesta error" role="alert"></p>
+      </form>
+    </section>
+
+    <!-- PANEL (se muestra solo si iniciaste sesión) -->
+    <section class="seccion" id="panel" hidden>
+      <h1 class="titulo">Panel de Vortex</h1>
+      <p class="bocadillo">¡Hola, admin! Desde aquí gestionarás los productos y verás los mensajes.</p>
+
+      <div class="tira">
+        <div class="vineta"><h3 id="numProductos">0</h3><p>Productos</p></div>
+        <div class="vineta"><h3 id="numMensajes">0</h3><p>Mensajes</p></div>
+      </div>
+
+      <button class="boton boton-claro" id="salir" type="button">Cerrar sesión</button>
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="pie">
+    <div>
+      <strong class="logo">VORTEX</strong>
+      <p>Entra al Vórtice.</p>
+    </div>
+    <div>
+      <p>alexanderantunez740@gmail.com</p>
+      <p>Instagram: @poethicghost</p>
+    </div>
+    <small>© 2026 Vortex · Alexander Antunez y Valeria López</small>
+  </footer>
+
+  <script src="../js/app.js"></script>
+</body>
+</html>

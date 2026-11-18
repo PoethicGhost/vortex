@@ -194,3 +194,45 @@ if (formulario) {
       "¡Mensaje enviado! Gracias, " + datos.nombre + ".";
   };
 }
+
+// ===== ADMIN: LOGIN =====
+// Cambia estos datos por los que ustedes quieran.
+const ADMIN_USUARIO = "admin";
+const ADMIN_CLAVE = "vortex2026";
+
+const formLogin = document.getElementById("formLogin");
+if (formLogin) {
+  const login = document.getElementById("login");
+  const panel = document.getElementById("panel");
+
+  // muestra el login o el panel según si hay sesión iniciada
+  function revisarSesion() {
+    const dentro = sessionStorage.getItem("vortex_admin") === "ok";
+    login.hidden = dentro;
+    panel.hidden = !dentro;
+    if (dentro) {
+      document.getElementById("numProductos").textContent = obtenerProductos().length;
+      document.getElementById("numMensajes").textContent = leer("vortex_mensajes", []).length;
+    }
+  }
+
+  formLogin.onsubmit = (e) => {
+    e.preventDefault();
+    const usuario = document.getElementById("usuario").value.trim();
+    const clave = document.getElementById("clave").value;
+    if (usuario === ADMIN_USUARIO && clave === ADMIN_CLAVE) {
+      sessionStorage.setItem("vortex_admin", "ok");
+      formLogin.reset();
+      revisarSesion();
+    } else {
+      document.getElementById("error").textContent = "Usuario o contraseña incorrectos.";
+    }
+  };
+
+  document.getElementById("salir").onclick = () => {
+    sessionStorage.removeItem("vortex_admin");
+    revisarSesion();
+  };
+
+  revisarSesion();
+}

@@ -410,3 +410,10 @@ h1.titulo { font-size: clamp(2.4rem, 7vw, 4rem); }
   .contacto { grid-template-columns: 1fr; }
   .formulario { transform: none; }
 }
+
+/* ===== ADMIN ===== */
+[hidden] { display: none !important; }
+.login { max-width: 420px; transform: none; }
+.respuesta.error { color: var(--magenta); }
+#panel .vineta h3 { font-size: 3.2rem; color: var(--morado); }
+#panel .bocadillo { max-width: 700px; }
