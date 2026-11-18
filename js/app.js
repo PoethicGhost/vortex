@@ -61,8 +61,46 @@ if (destacados) {
   destacados.innerHTML = obtenerProductos().slice(0, 4).map(crearTarjeta).join("");
 }
 
-// ===== CATÁLOGO: muestra todos los productos =====
+/// ===== CATÁLOGO: filtros, buscador y orden =====
 const lista = document.getElementById("lista");
 if (lista) {
-  lista.innerHTML = obtenerProductos().map(crearTarjeta).join("");
+  const todos = obtenerProductos();
+  const tipos = ["todo", ...new Set(todos.map(p => p.tipo))];
+  // si vienes desde una viñeta del inicio (?c=hoodie) ese filtro queda activo
+  let tipoActivo = new URLSearchParams(location.search).get("c") || "todo";
+
+  const caja = document.getElementById("botones");
+  const buscador = document.getElementById("buscar");
+  const orden = document.getElementById("orden");
+  const cuenta = document.getElementById("cuenta");
+
+  function mostrar() {
+    // botones de categoría
+    caja.innerHTML = tipos.map(t =>
+      `<button class="filtro ${t === tipoActivo ? "activo" : ""}" data-tipo="${t}">${t}</button>`
+    ).join("");
+    caja.querySelectorAll("button").forEach(b => {
+      b.onclick = () => { tipoActivo = b.dataset.tipo; mostrar(); };
+    });
+
+    // filtrar por categoría y por lo que escribas
+    const texto = buscador.value.toLowerCase();
+    const resultado = todos.filter(p =>
+      (tipoActivo === "todo" || p.tipo === tipoActivo) &&
+      p.nombre.toLowerCase().includes(texto)
+    );
+
+    // ordenar por precio
+    if (orden.value === "menor") resultado.sort((a, b) => a.precio - b.precio);
+    if (orden.value === "mayor") resultado.sort((a, b) => b.precio - a.precio);
+
+    cuenta.textContent = resultado.length + " productos";
+    lista.innerHTML = resultado.length
+      ? resultado.map(crearTarjeta).join("")
+      : '<p class="bocadillo">No encontramos nada con eso. Prueba otra búsqueda.</p>';
+  }
+
+  buscador.oninput = mostrar;
+  orden.onchange = mostrar;
+  mostrar();
 }

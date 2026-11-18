@@ -31,6 +31,16 @@
 
     <!-- LISTA DE PRODUCTOS: se llena con JavaScript -->
     <section class="seccion" id="productos">
+              <div class="filtros">
+        <input type="search" id="buscar" placeholder="Busca tu prenda...">
+        <div id="botones"></div>
+        <select id="orden">
+          <option value="normal">Orden original</option>
+          <option value="menor">Menor precio</option>
+          <option value="mayor">Mayor precio</option>
+        </select>
+      </div>
+      <p class="cuenta" id="cuenta"></p>
       <div class="tira" id="lista"></div>
     </section>
   </main>
