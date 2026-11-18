@@ -60,3 +60,9 @@ const destacados = document.getElementById("top");
 if (destacados) {
   destacados.innerHTML = obtenerProductos().slice(0, 4).map(crearTarjeta).join("");
 }
+
+// ===== CATÁLOGO: muestra todos los productos =====
+const lista = document.getElementById("lista");
+if (lista) {
+  lista.innerHTML = obtenerProductos().map(crearTarjeta).join("");
+}
