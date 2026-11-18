@@ -1,0 +1,139 @@
+/* ===== BASE ===== */
+:root {
+  --fondo: #12091f;
+  --morado: #8b2cf5;
+  --magenta: #ff2e93;
+  --cian: #22d3ee;
+  --amarillo: #ffe600;
+  --papel: #fff8e1;
+  --tinta: #0a0a0a;
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+body {
+  font-family: "Comic Neue", system-ui, sans-serif;
+  font-size: 1.1rem;
+  color: var(--papel);
+  background-color: var(--fondo);
+  /* puntitos de cómic */
+  background-image: radial-gradient(#ffffff14 2px, transparent 2px);
+  background-size: 18px 18px;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ===== ENCABEZADO ===== */
+.barra {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 5%;
+  background: var(--tinta);
+  border-bottom: 5px solid var(--amarillo);
+}
+
+.logo {
+  font-family: "Bangers", cursive;
+  font-size: 2rem;
+  letter-spacing: 3px;
+  color: var(--amarillo);
+  text-shadow: 3px 3px 0 var(--magenta);
+}
+
+.menu { display: flex; gap: 22px; font-weight: 700; }
+.menu a:hover { color: var(--cian); }
+
+/* ===== BOTONES ===== */
+.boton {
+  display: inline-block;
+  margin: 6px 8px 6px 0;
+  padding: 12px 24px;
+  font-family: "Bangers", cursive;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  color: var(--tinta);
+  background: var(--amarillo);
+  border: 4px solid var(--tinta);
+  box-shadow: 5px 5px 0 var(--tinta);
+  transition: transform .15s, box-shadow .15s;
+}
+.boton:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 var(--tinta); }
+.boton-claro { background: var(--cian); }
+
+/* ===== PORTADA ===== */
+.portada {
+  min-height: 85vh;
+  display: grid;
+  place-items: center;
+  padding: 60px 5%;
+}
+
+.vineta {
+  position: relative;
+  max-width: 760px;
+  padding: 40px 32px;
+  text-align: center;
+  color: var(--tinta);
+  background: var(--papel);
+  border: 6px solid var(--tinta);
+  box-shadow: 12px 12px 0 var(--morado);
+}
+
+.portada .vineta { transform: rotate(-1.5deg); }
+
+.portada h1 {
+  font-family: "Bangers", cursive;
+  font-size: clamp(4rem, 14vw, 8rem);
+  line-height: 1;
+  letter-spacing: 6px;
+  color: var(--morado);
+  -webkit-text-stroke: 3px var(--tinta);
+  text-shadow: 6px 6px 0 var(--amarillo);
+}
+
+.explosion {
+  position: absolute; top: -45px; right: -35px;
+  display: grid; place-items: center;
+  width: 130px; height: 130px;
+  font-family: "Bangers", cursive;
+  font-size: 2rem;
+  color: var(--tinta);
+  background: var(--amarillo);
+  clip-path: polygon(50% 0, 61% 20%, 82% 10%, 78% 33%, 100% 38%, 82% 55%, 96% 78%, 72% 76%, 65% 100%, 50% 83%, 35% 100%, 28% 76%, 4% 78%, 18% 55%, 0 38%, 22% 33%, 18% 10%, 39% 20%);
+  transform: rotate(12deg);
+}
+
+.bocadillo {
+  position: relative;
+  margin: 24px 0;
+  padding: 16px 20px;
+  font-weight: 700;
+  color: var(--tinta);
+  background: #fff;
+  border: 4px solid var(--tinta);
+  border-radius: 26px;
+}
+.bocadillo::after {
+  content: "";
+  position: absolute; bottom: -18px; left: 40px;
+  width: 24px; height: 24px;
+  background: #fff;
+  border-right: 4px solid var(--tinta);
+  border-bottom: 4px solid var(--tinta);
+  transform: rotate(45deg);
+}
+
+/* ===== CINTA ===== */
+.cinta {
+  padding: 14px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+  font-family: "Bangers", cursive;
+  font-size: 1.6rem;
+  letter-spacing: 3px;
+  color: var(--tinta);
+  background: var(--amarillo);
+  border-top: 5px solid var(--tinta);
+  border-bottom: 5px solid var(--tinta);
+}
