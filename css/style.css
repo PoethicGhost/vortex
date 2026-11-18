@@ -137,3 +137,76 @@ a { color: inherit; text-decoration: none; }
   border-top: 5px solid var(--tinta);
   border-bottom: 5px solid var(--tinta);
 }
+
+
+/* ===== SECCIONES ===== */
+.seccion {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 70px 5%;
+}
+
+.titulo {
+  display: inline-block;
+  margin-bottom: 36px;
+  padding: 8px 24px;
+  font-family: "Bangers", cursive;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: 2px;
+  color: var(--tinta);
+  background: var(--cian);
+  border: 5px solid var(--tinta);
+  box-shadow: 6px 6px 0 var(--magenta);
+  transform: rotate(-1.5deg);
+}
+
+/* ===== TIRA DE VIÑETAS ===== */
+.tira {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 32px;
+  margin-bottom: 30px;
+}
+
+.tira .vineta {
+  max-width: none;
+  padding: 30px 20px;
+  box-shadow: 8px 8px 0 var(--morado);
+  transition: transform .2s, box-shadow .2s;
+}
+
+.tira a.vineta:hover {
+  transform: translate(-4px, -4px) rotate(-1deg);
+  box-shadow: 14px 14px 0 var(--magenta);
+}
+
+.vineta h3 {
+  font-family: "Bangers", cursive;
+  font-size: 1.9rem;
+  letter-spacing: 2px;
+  color: var(--tinta);
+}
+
+/* los bocadillos dentro de la tira se ven como globos de diálogo */
+.tira .bocadillo { margin: 0 0 24px; }
+.bocadillo a { color: var(--morado); text-decoration: underline; }
+
+/* ===== PIE DE PÁGINA ===== */
+.pie {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 40px 5%;
+  background: var(--tinta);
+  border-top: 5px solid var(--amarillo);
+}
+.pie p { margin: 4px 0; }
+.pie a { color: var(--cian); font-weight: 700; }
+.pie small { width: 100%; text-align: center; opacity: .7; }
+
+/* ===== MÓVIL ===== */
+@media (max-width: 760px) {
+  .menu { gap: 12px; font-size: .9rem; flex-wrap: wrap; justify-content: flex-end; }
+  .explosion { width: 90px; height: 90px; font-size: 1.4rem; right: -10px; }
+}
