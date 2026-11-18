@@ -49,6 +49,33 @@
         <div class="vineta"><h3 id="numMensajes">0</h3><p>Mensajes</p></div>
       </div>
 
+      <h2 class="titulo">Agregar producto</h2>
+      <form class="vineta formulario" id="formProducto">
+        <label for="pNombre">Nombre</label>
+        <input type="text" id="pNombre" required>
+        <label for="pTipo">Tipo</label>
+        <select id="pTipo">
+          <option>camiseta</option><option>hoodie</option><option>pantalon</option>
+          <option>chaqueta</option><option>gorra</option><option>accesorio</option>
+        </select>
+        <label for="pPrecio">Precio</label>
+        <input type="number" id="pPrecio" min="0" required>
+        <label for="pColor">Color</label>
+        <input type="color" id="pColor" value="#8b2cf5">
+        <label for="pDesc">Descripción</label>
+        <input type="text" id="pDesc">
+        <label for="pImg">Foto (ruta opcional, por ejemplo ../img/hoodie.jpg)</label>
+        <input type="text" id="pImg">
+        <button class="boton" type="submit">Agregar</button>
+      </form>
+
+      <h2 class="titulo">Productos</h2>
+      <div class="tabla"><table id="tablaProductos"></table></div>
+
+      <h2 class="titulo">Mensajes recibidos</h2>
+      <div id="listaMensajes"></div>
+
+      <p><button class="boton boton-claro" id="restaurar" type="button">Restaurar productos originales</button></p>
       <button class="boton boton-claro" id="salir" type="button">Cerrar sesión</button>
     </section>
 

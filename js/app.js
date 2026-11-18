@@ -37,11 +37,12 @@ const FORMAS = {
   accesorio: "M30 50a20 20 0 1 0 40 0a20 20 0 1 0-40 0M20 50a30 30 0 1 0 60 0a30 30 0 1 0-60 0"
 };
 
-const dibujarPrenda = (p) => `
-  <svg viewBox="0 0 100 100" role="img" aria-label="${p.nombre}">
-    <path d="${FORMAS[p.tipo] || FORMAS.camiseta}" fill="${p.color}" stroke="#0a0a0a" stroke-width="2.5"/>
-    <text x="50" y="62" font-size="16" font-weight="900" fill="#fff" text-anchor="middle" font-family="Bangers, Impact">V</text>
-  </svg>`;
+const dibujarPrenda = (p) => p.img
+  ? `<img src="${p.img}" alt="${p.nombre}">`
+  : `<svg viewBox="0 0 100 100" role="img" aria-label="${p.nombre}">
+      <path d="${FORMAS[p.tipo] || FORMAS.camiseta}" fill="${p.color}" stroke="#0a0a0a" stroke-width="2.5"/>
+      <text x="50" y="62" font-size="16" font-weight="900" fill="#fff" text-anchor="middle" font-family="Bangers, Impact">V</text>
+    </svg>`;
 
 // ===== TARJETA DE PRODUCTO =====
 const rutaProducto = (id) =>
@@ -235,4 +236,61 @@ if (formLogin) {
   };
 
   revisarSesion();
+}
+
+// ===== ADMIN: PRODUCTOS Y MENSAJES =====
+const formProducto = document.getElementById("formProducto");
+if (formProducto) {
+  // evita que un mensaje escrito por un usuario meta HTML en la página
+  const limpiar = (t) => String(t).replace(/[&<>"']/g, c =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+  function pintarAdmin() {
+    const prods = obtenerProductos();
+    const msgs = leer("vortex_mensajes", []);
+    document.getElementById("numProductos").textContent = prods.length;
+    document.getElementById("numMensajes").textContent = msgs.length;
+
+    document.getElementById("tablaProductos").innerHTML =
+      "<tr><th>Nombre</th><th>Tipo</th><th>Precio</th><th></th></tr>" +
+      prods.map(p => `<tr>
+        <td>${limpiar(p.nombre)}</td><td>${limpiar(p.tipo)}</td><td>${formatoPrecio(p.precio)}</td>
+        <td><button class="filtro" data-id="${p.id}">Eliminar</button></td></tr>`).join("");
+
+    document.querySelectorAll("#tablaProductos button").forEach(b => {
+      b.onclick = () => {
+        guardar("vortex_productos", obtenerProductos().filter(p => p.id != b.dataset.id));
+        pintarAdmin();
+      };
+    });
+
+    document.getElementById("listaMensajes").innerHTML = msgs.length
+      ? msgs.map(m => `<div class="vineta mensaje">
+          <b>${limpiar(m.nombre)}</b> (${limpiar(m.correo)}) · ${limpiar(m.asunto)} · ${limpiar(m.fecha)}
+          <p>${limpiar(m.mensaje)}</p></div>`).join("")
+      : '<p class="bocadillo">Aún no hay mensajes.</p>';
+  }
+
+  formProducto.onsubmit = (e) => {
+    e.preventDefault();
+    const nuevo = {
+      id: Date.now(),
+      nombre: document.getElementById("pNombre").value.trim(),
+      tipo: document.getElementById("pTipo").value,
+      precio: Number(document.getElementById("pPrecio").value),
+      color: document.getElementById("pColor").value,
+      desc: document.getElementById("pDesc").value.trim(),
+      img: document.getElementById("pImg").value.trim()
+    };
+    guardar("vortex_productos", [...obtenerProductos(), nuevo]);
+    formProducto.reset();
+    pintarAdmin();
+  };
+
+  document.getElementById("restaurar").onclick = () => {
+    localStorage.removeItem("vortex_productos");
+    pintarAdmin();
+  };
+
+  pintarAdmin();
 }
