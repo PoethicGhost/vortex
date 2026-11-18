@@ -30,7 +30,7 @@ const formatoPrecio = (n) => "$" + Number(n).toLocaleString("es-CO");
 // ===== DIBUJO DE LAS PRENDAS (siluetas, luego puedes poner fotos) =====
 const FORMAS = {
   camiseta:  "M22 18 40 8Q50 18 60 8L78 18 94 42 80 50 74 42V92H26V42L20 50 6 42Z",
-  hoodie:    "M24 22 38 12Q50 30 62 12L76 22 94 46 82 54 74 46V92H26V46L18 54 6 46Z",
+  hoodie:    "M24 22 38 12Q50 -2 62 12L76 22 94 46 82 54 74 46V92H26V46L18 54 6 46ZM38 12Q50 32 62 12",
   pantalon:  "M28 6H72L78 94H55L50 38 45 94H22Z",
   chaqueta:  "M22 18 38 8 50 22 62 8 78 18 96 46 84 54 76 46V92H24V46L16 54 4 46ZM50 22V92",
   gorra:     "M14 62Q14 26 50 26T86 62ZM60 60H98V68H60Z",
@@ -103,4 +103,56 @@ if (lista) {
   buscador.oninput = mostrar;
   orden.onchange = mostrar;
   mostrar();
+}
+// ===== DETALLE DE PRODUCTO =====
+const detalle = document.getElementById("detalle");
+if (detalle) {
+  const todos = obtenerProductos();
+  const id = Number(new URLSearchParams(location.search).get("id"));
+  const p = todos.find(x => x.id === id) || todos[0];
+  let talla = "M";
+
+  document.title = p.nombre + " | Vortex";
+
+  detalle.innerHTML = `
+    <div class="foto">${dibujarPrenda(p)}</div>
+    <div class="info">
+      <small>${p.tipo}</small>
+      <h1>${p.nombre}</h1>
+      <p class="bocadillo">${p.desc}</p>
+      <p class="precio">${formatoPrecio(p.precio)}</p>
+      <p><b>Elige tu talla:</b></p>
+      <div id="tallas">
+        ${["S", "M", "L", "XL"].map(t =>
+          `<button class="filtro ${t === talla ? "activo" : ""}" data-talla="${t}">${t}</button>`
+        ).join("")}
+      </div>
+      <a class="boton" id="pedir" href="#">Pedir esta prenda</a>
+      <details class="cuidados">
+        <summary>Cuidados y envío</summary>
+        <p>Lava la prenda del revés con agua fría. Hacemos envíos a todo el país en 3 a 6 días hábiles.</p>
+      </details>
+    </div>`;
+
+  // el botón "Pedir" lleva al contacto con la prenda y la talla ya escritas
+  const pedir = document.getElementById("pedir");
+  const actualizarPedido = () => {
+    pedir.href = "contacto.html?p=" + encodeURIComponent(p.nombre + " talla " + talla);
+  };
+  actualizarPedido();
+
+  document.querySelectorAll("#tallas button").forEach(b => {
+    b.onclick = () => {
+      talla = b.dataset.talla;
+      document.querySelectorAll("#tallas button").forEach(x => x.classList.toggle("activo", x === b));
+      actualizarPedido();
+    };
+  });
+
+  // productos de otras categorías
+  document.getElementById("relacionados").innerHTML = todos
+    .filter(x => x.id !== p.id && x.tipo !== p.tipo)
+    .slice(0, 4)
+    .map(crearTarjeta)
+    .join("");
 }
