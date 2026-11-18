@@ -205,8 +205,50 @@ a { color: inherit; text-decoration: none; }
 .pie a { color: var(--cian); font-weight: 700; }
 .pie small { width: 100%; text-align: center; opacity: .7; }
 
-/* ===== MÓVIL ===== */
-@media (max-width: 760px) {
-  .menu { gap: 12px; font-size: .9rem; flex-wrap: wrap; justify-content: flex-end; }
-  .explosion { width: 90px; height: 90px; font-size: 1.4rem; right: -10px; }
+/* ===== RESPONSIVE ===== */
+body { overflow-x: hidden; }
+img, svg { max-width: 100%; }
+
+/* Tablet */
+@media (max-width: 900px) {
+  .seccion { padding: 50px 5%; }
+  .tira { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 24px; }
+}
+
+/* Celular */
+@media (max-width: 600px) {
+  .barra {
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px 4%;
+  }
+  .logo { font-size: 1.7rem; }
+  .menu {
+    gap: 6px 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: .95rem;
+  }
+
+  .portada { min-height: auto; padding: 50px 6%; }
+  .vineta { padding: 28px 18px; box-shadow: 8px 8px 0 var(--morado); }
+  .portada .vineta { transform: none; }
+  .portada h1 { -webkit-text-stroke: 2px var(--tinta); text-shadow: 4px 4px 0 var(--amarillo); }
+  .explosion { top: -38px; right: -6px; width: 90px; height: 90px; font-size: 1.4rem; }
+
+  .boton { display: block; margin: 10px 0; text-align: center; }
+
+  .seccion { padding: 40px 6%; }
+  .titulo { font-size: 1.7rem; transform: none; }
+  .tira { grid-template-columns: 1fr 1fr; gap: 18px; }
+  .tira .vineta { padding: 22px 10px; box-shadow: 5px 5px 0 var(--morado); }
+  .vineta h3 { font-size: 1.4rem; }
+
+  .cinta { font-size: 1.1rem; letter-spacing: 1px; }
+  .pie { flex-direction: column; text-align: center; }
+}
+
+/* Celulares muy pequeños */
+@media (max-width: 380px) {
+  .tira { grid-template-columns: 1fr; }
 }
