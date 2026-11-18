@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vortex | Entra al Vórtice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ENCABEZADO -->
+  <header class="barra">
+    <a class="logo" href="index.html">VORTEX</a>
+    <nav class="menu">
+      <a href="index.html">Inicio</a>
+      <a href="pages/catalogo.html">Catálogo</a>
+      <a href="pages/nosotros.html">Nosotros</a>
+      <a href="pages/asistente.html">Asistente IA</a>
+      <a href="pages/contacto.html">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- PORTADA: la primera viñeta -->
+    <section class="portada" id="inicio">
+      <div class="vineta">
+        <span class="explosion">¡BAM!</span>
+        <h1>VORTEX</h1>
+        <p class="bocadillo">Entra al Vórtice. Ropa urbana y oversize para todas las edades y todo tipo de persona.</p>
+        <a class="boton" href="pages/catalogo.html">Ver catálogo</a>
+        <a class="boton boton-claro" href="pages/asistente.html">Encuentra tu outfit con IA</a>
+      </div>
+    </section>
+
+    <!-- CINTA -->
+    <div class="cinta">OVERSIZE • URBANO • PARA TODOS • ENTRA AL VÓRTICE •</div>
+
+    <!-- CATEGORÍAS: cada una es una viñeta que lleva a otra página -->
+    <section class="seccion" id="categorias">
+      <h2 class="titulo">Elige tu zona</h2>
+      <div class="tira">
+        <a class="vineta" href="pages/catalogo.html?c=camiseta"><h3>Camisetas</h3></a>
+        <a class="vineta" href="pages/catalogo.html?c=hoodie"><h3>Hoodies</h3></a>
+        <a class="vineta" href="pages/catalogo.html?c=pantalon"><h3>Pantalones</h3></a>
+        <a class="vineta" href="pages/catalogo.html?c=chaqueta"><h3>Chaquetas</h3></a>
+        <a class="vineta" href="pages/catalogo.html?c=gorra"><h3>Gorras</h3></a>
+        <a class="vineta" href="pages/catalogo.html?c=accesorio"><h3>Accesorios</h3></a>
+      </div>
+    </section>
+
+    <!-- DESTACADOS: se llenará con JavaScript más adelante -->
+    <section class="seccion" id="destacados">
+      <h2 class="titulo">Lo más pedido</h2>
+      <div class="tira" id="top"></div>
+      <a class="boton" href="pages/catalogo.html">Ver todo</a>
+    </section>
+
+    <!-- QUÉ ES VORTEX: bocadillos de cómic -->
+    <section class="seccion" id="marca">
+      <h2 class="titulo">¿Qué es Vortex?</h2>
+      <div class="tira">
+        <p class="bocadillo"><strong>Sin etiquetas.</strong> Ropa para jóvenes y adultos, de todos los cuerpos y todos los gustos.</p>
+        <p class="bocadillo"><strong>Oversize real.</strong> Caídas anchas, telas cómodas y estilo de calle con actitud rock.</p>
+        <p class="bocadillo"><strong>Hecha por dos.</strong> Alexander y Valeria crearon la marca desde cero. <a href="pages/nosotros.html">Conoce la historia</a>.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="pie">
+    <div>
+      <strong class="logo">VORTEX</strong>
+      <p>Entra al Vórtice.</p>
+    </div>
+    <div>
+      <p>alexanderantunez740@gmail.com</p>
+      <p>Instagram: @poethicghost</p>
+      <a href="pages/admin.html">Zona admin</a>
+    </div>
+    <small>© 2026 Vortex · Alexander Antunez y Valeria López</small>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
