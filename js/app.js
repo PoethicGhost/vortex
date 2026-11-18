@@ -294,3 +294,101 @@ if (formProducto) {
 
   pintarAdmin();
 }
+
+// ===== ASISTENTE IA: VORTI =====
+const chatCaja = document.getElementById("chat");
+if (chatCaja) {
+  // quita tildes y mayúsculas para entender mejor lo que escribe la persona
+  const simple = (t) => t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+  const RESPUESTAS = [
+    [/hola|buenas|hey|saludos/, "¡Hola! Soy Vorti, el asistente de Vortex. Pregúntame por tallas, envíos, pagos o pídeme un outfit."],
+    [/envio|entrega|demora|llega/, "Hacemos envíos a todo el país en 3 a 6 días hábiles."],
+    [/talla|medida|ajuste|oversize/, "Somos oversize: pide tu talla de siempre para una caída ancha, o una más para más holgura."],
+    [/pago|pagar|transferencia/, "Puedes pagar por transferencia o contra entrega. Los precios están en cada producto."],
+    [/cambio|devol/, "Tienes 15 días para cambios si la prenda está sin uso."],
+    [/contacto|correo|instagram|escribir/, "Escríbenos desde la página de Contacto o por Instagram: @poethicghost."],
+    [/recomienda|outfit|combin|que me pongo/, "Usa el recomendador que está más abajo: eliges estilo y presupuesto, y te sugiero prendas."],
+    [/gracias|chao|adios/, "¡A ti! Entra al Vórtice cuando quieras."]
+  ];
+
+  const TIPOS = {
+    camiseta: /camiseta|camisa|playera/, hoodie: /hoodie|buzo|sudadera/,
+    pantalon: /pantalon|jean|cargo/, chaqueta: /chaqueta|abrigo/,
+    gorra: /gorra/, accesorio: /accesorio|manilla|cadena/
+  };
+
+  const enlace = (p) => `<a href="${rutaProducto(p.id)}">${p.nombre}</a>`;
+
+  function responder(texto) {
+    const q = simple(texto);
+    const regla = RESPUESTAS.find(r => r[0].test(q));
+    if (regla) return regla[1];
+
+    const prods = obtenerProductos();
+    if (/barato|economic|precio bajo/.test(q)) {
+      const baratos = [...prods].sort((a, b) => a.precio - b.precio).slice(0, 3);
+      return "Lo más económico: " + baratos.map(p => `${enlace(p)} (${formatoPrecio(p.precio)})`).join(", ");
+    }
+    const tipo = Object.keys(TIPOS).find(t => TIPOS[t].test(q));
+    if (tipo) {
+      const lista = prods.filter(p => p.tipo === tipo).slice(0, 3);
+      if (lista.length) return "Mira estas opciones: " + lista.map(enlace).join(", ");
+    }
+    return "No estoy seguro de eso. Prueba con envíos, tallas, pagos o el nombre de una prenda, como hoodie o gorra.";
+  }
+
+  function agregarMensaje(contenido, esUsuario) {
+    const burbuja = document.createElement("div");
+    burbuja.className = "burbuja" + (esUsuario ? " usuario" : "");
+    if (esUsuario) burbuja.textContent = contenido;   // lo escrito por la persona va como texto
+    else burbuja.innerHTML = contenido;
+    chatCaja.appendChild(burbuja);
+    chatCaja.scrollTop = chatCaja.scrollHeight;
+  }
+
+  function enviar(texto) {
+    texto = texto.trim();
+    if (!texto) return;
+    agregarMensaje(texto, true);
+    setTimeout(() => agregarMensaje(responder(texto), false), 350);
+  }
+
+  document.getElementById("formChat").onsubmit = (e) => {
+    e.preventDefault();
+    const campo = document.getElementById("pregunta");
+    enviar(campo.value);
+    campo.value = "";
+  };
+  document.querySelectorAll("#rapidas button").forEach(b => b.onclick = () => enviar(b.textContent));
+
+  agregarMensaje("¡Hola! Soy Vorti, el asistente de Vortex. ¿En qué te ayudo?", false);
+}
+
+// ===== RECOMENDADOR =====
+const formRec = document.getElementById("formRec");
+if (formRec) {
+  const ESTILOS = {
+    rock: ["camiseta", "chaqueta", "gorra", "accesorio"],
+    casual: ["hoodie", "pantalon", "camiseta"],
+    noche: ["chaqueta", "hoodie", "pantalon"]
+  };
+
+  formRec.onsubmit = (e) => {
+    e.preventDefault();
+    const tipos = ESTILOS[document.getElementById("estilo").value];
+    const maximo = Number(document.getElementById("presupuesto").value);
+
+    const sugeridos = obtenerProductos()
+      .filter(p => tipos.includes(p.tipo) && p.precio <= maximo)
+      .sort((a, b) => tipos.indexOf(a.tipo) - tipos.indexOf(b.tipo))
+      .slice(0, 4);
+
+    const texto = document.getElementById("recTexto");
+    texto.hidden = false;
+    texto.textContent = sugeridos.length
+      ? "Esto va con tu estilo:"
+      : "No encontré prendas con ese presupuesto. Sube un poco el límite.";
+    document.getElementById("recResultado").innerHTML = sugeridos.map(crearTarjeta).join("");
+  };
+}

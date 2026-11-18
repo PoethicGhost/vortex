@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Asistente IA | Vortex</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- ENCABEZADO -->
+  <header class="barra">
+    <a class="logo" href="../index.html">VORTEX</a>
+    <nav class="menu">
+      <a href="../index.html">Inicio</a>
+      <a href="catalogo.html">Catálogo</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a class="activo" href="asistente.html">Asistente IA</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- CHATBOT -->
+    <section class="seccion">
+      <h1 class="titulo">Vorti, tu asistente</h1>
+      <div class="vineta asistente">
+        <div class="chat" id="chat" aria-live="polite"></div>
+        <form id="formChat" class="enviar">
+          <input type="text" id="pregunta" placeholder="Pregúntame por tallas, envíos, precios..." required>
+          <button class="boton" type="submit">Enviar</button>
+        </form>
+        <div class="rapidas" id="rapidas">
+          <button class="filtro" type="button">envíos</button>
+          <button class="filtro" type="button">tallas</button>
+          <button class="filtro" type="button">pagos</button>
+          <button class="filtro" type="button">lo más barato</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECOMENDADOR -->
+    <section class="seccion">
+      <h2 class="titulo">Encuentra tu outfit</h2>
+      <form class="vineta formulario" id="formRec">
+        <label for="estilo">Tu estilo</label>
+        <select id="estilo">
+          <option value="rock">Rock</option>
+          <option value="casual">Casual</option>
+          <option value="noche">De noche</option>
+        </select>
+
+        <label for="presupuesto">Presupuesto máximo</label>
+        <select id="presupuesto">
+          <option value="80000">Hasta $80.000</option>
+          <option value="160000">Hasta $160.000</option>
+          <option value="9999999">Sin límite</option>
+        </select>
+
+        <button class="boton" type="submit">Recomiéndame</button>
+      </form>
+      <p class="bocadillo" id="recTexto" hidden></p>
+      <div class="tira" id="recResultado"></div>
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="pie">
+    <div>
+      <strong class="logo">VORTEX</strong>
+      <p>Entra al Vórtice.</p>
+    </div>
+    <div>
+      <p>alexanderantunez740@gmail.com</p>
+      <p>Instagram: @poethicghost</p>
+      <a href="admin.html">Zona admin</a>
+    </div>
+    <small>© 2026 Vortex · Alexander Antunez y Valeria López</small>
+  </footer>
+
+  <script src="../js/app.js"></script>
+</body>
+</html>
