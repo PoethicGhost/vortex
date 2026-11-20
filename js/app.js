@@ -1,18 +1,17 @@
 // ===== DATOS DE PRODUCTOS =====
-// Cambia nombres, precios y descripciones por los de tu marca.
 const PRODUCTOS_BASE = [
-  { id: 1,  nombre: "Camiseta Eclipse",   tipo: "camiseta",  color: "#6d28d9", precio: 79000,  desc: "Oversize de algodón pesado con el vórtice estampado en la espalda." },
-  { id: 2,  nombre: "Camiseta Rockstar",  tipo: "camiseta",  color: "#222222", precio: 75000,  desc: "Negra, caída ancha y letras gastadas. Va con todo." },
-  { id: 3,  nombre: "Camiseta Nébula",    tipo: "camiseta",  color: "#22d3ee", precio: 75000,  desc: "Tono eléctrico para destacar en cualquier plan." },
-  { id: 4,  nombre: "Camiseta Ruido",     tipo: "camiseta",  color: "#ff2e93", precio: 79000,  desc: "Estampado gráfico inspirado en el rock alternativo." },
-  { id: 5,  nombre: "Hoodie Abismo",      tipo: "hoodie",    color: "#1e1b4b", precio: 159000, desc: "Capota grande, bolsillo canguro y interior afelpado." },
-  { id: 6,  nombre: "Hoodie Vórtice",     tipo: "hoodie",    color: "#8b2cf5", precio: 169000, desc: "Nuestro insignia: oversize morado con logo bordado." },
-  { id: 7,  nombre: "Hoodie Medianoche",  tipo: "hoodie",    color: "#111111", precio: 159000, desc: "Negro total, mangas largas y puños anchos." },
-  { id: 8,  nombre: "Pantalón Cargo Flow", tipo: "pantalon", color: "#4b5563", precio: 139000, desc: "Baggy con bolsillos laterales y cintura ajustable." },
-  { id: 9,  nombre: "Jean Wide Dark",     tipo: "pantalon",  color: "#312e81", precio: 149000, desc: "Corte ancho en denim oscuro, cómodo todo el día." },
-  { id: 10, nombre: "Chaqueta Vx",        tipo: "chaqueta",  color: "#171717", precio: 289000, desc: "Cuero sintético, cierre metálico y forro suave." },
-  { id: 11, nombre: "Gorra Órbita",       tipo: "gorra",     color: "#8b2cf5", precio: 49000,  desc: "Ajustable, con bordado frontal de Vortex." },
-  { id: 12, nombre: "Pack Manillas",      tipo: "accesorio", color: "#ffe600", precio: 35000,  desc: "Set de manillas y cadena para rematar el outfit." }
+  { id: 1,  nombre: "Camiseta Eclipse",    tipo: "camiseta",  color: "#111111", precio: 79000,  img: "img/camiseta-eclipse.jpg",     desc: "Camiseta negra con el eclipse del vórtice estampado al frente. Edición Celestial Apparel." },
+  { id: 2,  nombre: "Camiseta Rockstar",   tipo: "camiseta",  color: "#111111", precio: 75000,  img: "img/camiseta-rockstar.jpg",    desc: "Guitarra con alas sobre el vórtice. Para quienes viven el rock: The Vortex Experience." },
+  { id: 3,  nombre: "Camiseta Nébula",     tipo: "camiseta",  color: "#111111", precio: 75000,  img: "img/camiseta-nebula.jpg",      desc: "Galaxia en espiral morada y azul estampada al frente. Cósmica y con mucho color." },
+  { id: 4,  nombre: "Camiseta Ruido",      tipo: "camiseta",  color: "#111111", precio: 79000,  img: "img/camiseta-ruido.jpg",       desc: "Espiral blanca rota como estática sobre negro. Actitud alternativa, Static Apparel Co." },
+  { id: 5,  nombre: "Hoodie Abismo",       tipo: "hoodie",    color: "#111111", precio: 159000, img: "img/hoodie-abismo.jpg",        desc: "Hoodie negro con bolsillo canguro y un abismo en espiral estampado. Deep Space Division." },
+  { id: 6,  nombre: "Hoodie Vórtice",      tipo: "hoodie",    color: "#111111", precio: 169000, img: "img/hoodie-vortice.jpg",       desc: "Nuestro insignia: hoodie negro con el vórtice morado brillante y letras desgastadas." },
+  { id: 7,  nombre: "Hoodie Medianoche",   tipo: "hoodie",    color: "#111111", precio: 159000, img: "img/hoodie-medianoche.jpg",    desc: "Cielo de medianoche con luna y estrellas fugaces. Capota amplia y puños anchos." },
+  { id: 8,  nombre: "Pantalón Cargo Flow", tipo: "pantalon",  color: "#111111", precio: 139000, img: "img/pantalon-cargo-flow.jpg",  desc: "Cargo negro con bolsillos laterales, cintas bordadas y logo Vortex." },
+  { id: 9,  nombre: "Jean Wide Dark",      tipo: "pantalon",  color: "#312e81", precio: 149000, img: "img/jean-wide-dark.jpg",       desc: "Jean de corte ancho en denim azul oscuro, con logo Vortex bordado." },
+  { id: 10, nombre: "Chaqueta Vx",         tipo: "chaqueta",  color: "#374151", precio: 289000, img: "img/chaqueta-vx.jpg",          desc: "Chaqueta gris oscuro con cierre completo, bolsillos con cremallera y detalles en los hombros." },
+  { id: 11, nombre: "Gorra Órbita",        tipo: "gorra",     color: "#374151", precio: 49000,  img: "img/gorra-orbita.jpg",         desc: "Gorra gris ajustable con el logo Vortex y órbitas bordadas al frente." },
+  { id: 12, nombre: "Pack Manillas",       tipo: "accesorio", color: "#8b2cf5", precio: 35000,  img: "img/pack-manillas.jpg",        desc: "Pack de 3 manillas resistentes, ligeras y duraderas (negra, blanca y morada), en caja Vortex." }
 ];
 
 // ===== FUNCIONES ÚTILES =====
@@ -27,7 +26,7 @@ const obtenerProductos = () => leer("vortex_productos", PRODUCTOS_BASE);
 
 const formatoPrecio = (n) => "$" + Number(n).toLocaleString("es-CO");
 
-// ===== DIBUJO DE LAS PRENDAS (siluetas, luego puedes poner fotos) =====
+// ===== DIBUJO DE LAS PRENDAS (foto, o silueta si no hay foto) =====
 const FORMAS = {
   camiseta:  "M22 18 40 8Q50 18 60 8L78 18 94 42 80 50 74 42V92H26V42L20 50 6 42Z",
   hoodie:    "M24 22 38 12Q50 -2 62 12L76 22 94 46 82 54 74 46V92H26V46L18 54 6 46ZM38 12Q50 32 62 12",
@@ -37,8 +36,13 @@ const FORMAS = {
   accesorio: "M30 50a20 20 0 1 0 40 0a20 20 0 1 0-40 0M20 50a30 30 0 1 0 60 0a30 30 0 1 0-60 0"
 };
 
+// Ajusta la ruta de la foto según la página (inicio o carpeta pages)
+const rutaImg = (r) => /^(https?:|data:)/.test(r)
+  ? r
+  : (location.pathname.includes("/pages/") ? "../" : "") + r.replace(/^(\.\.\/)+/, "");
+
 const dibujarPrenda = (p) => p.img
-  ? `<img src="${p.img}" alt="${p.nombre}">`
+  ? `<img src="${rutaImg(p.img)}" alt="${p.nombre}">`
   : `<svg viewBox="0 0 100 100" role="img" aria-label="${p.nombre}">
       <path d="${FORMAS[p.tipo] || FORMAS.camiseta}" fill="${p.color}" stroke="#0a0a0a" stroke-width="2.5"/>
       <text x="50" y="62" font-size="16" font-weight="900" fill="#fff" text-anchor="middle" font-family="Bangers, Impact">V</text>
@@ -62,7 +66,7 @@ if (destacados) {
   destacados.innerHTML = obtenerProductos().slice(0, 4).map(crearTarjeta).join("");
 }
 
-/// ===== CATÁLOGO: filtros, buscador y orden =====
+// ===== CATÁLOGO: filtros, buscador y orden =====
 const lista = document.getElementById("lista");
 if (lista) {
   const todos = obtenerProductos();
@@ -76,7 +80,6 @@ if (lista) {
   const cuenta = document.getElementById("cuenta");
 
   function mostrar() {
-    // botones de categoría
     caja.innerHTML = tipos.map(t =>
       `<button class="filtro ${t === tipoActivo ? "activo" : ""}" data-tipo="${t}">${t}</button>`
     ).join("");
@@ -84,14 +87,12 @@ if (lista) {
       b.onclick = () => { tipoActivo = b.dataset.tipo; mostrar(); };
     });
 
-    // filtrar por categoría y por lo que escribas
     const texto = buscador.value.toLowerCase();
     const resultado = todos.filter(p =>
       (tipoActivo === "todo" || p.tipo === tipoActivo) &&
       p.nombre.toLowerCase().includes(texto)
     );
 
-    // ordenar por precio
     if (orden.value === "menor") resultado.sort((a, b) => a.precio - b.precio);
     if (orden.value === "mayor") resultado.sort((a, b) => b.precio - a.precio);
 
@@ -105,6 +106,7 @@ if (lista) {
   orden.onchange = mostrar;
   mostrar();
 }
+
 // ===== DETALLE DE PRODUCTO =====
 const detalle = document.getElementById("detalle");
 if (detalle) {
@@ -135,7 +137,6 @@ if (detalle) {
       </details>
     </div>`;
 
-  // el botón "Pedir" lleva al contacto con la prenda y la talla ya escritas
   const pedir = document.getElementById("pedir");
   const actualizarPedido = () => {
     pedir.href = "contacto.html?p=" + encodeURIComponent(p.nombre + " talla " + talla);
@@ -150,7 +151,6 @@ if (detalle) {
     };
   });
 
-  // productos de otras categorías
   document.getElementById("relacionados").innerHTML = todos
     .filter(x => x.id !== p.id && x.tipo !== p.tipo)
     .slice(0, 4)
@@ -164,7 +164,6 @@ const FORM_URL = "";
 
 const formulario = document.getElementById("formulario");
 if (formulario) {
-  // si vienes desde "Pedir esta prenda", el mensaje ya viene escrito
   const pedido = new URLSearchParams(location.search).get("p");
   if (pedido) {
     formulario.asunto.value = "Pedido";
@@ -176,10 +175,8 @@ if (formulario) {
     const datos = Object.fromEntries(new FormData(formulario));
     datos.fecha = new Date().toLocaleString("es-CO");
 
-    // 1) se guarda en el navegador (el panel admin los leerá)
     guardar("vortex_mensajes", [datos, ...leer("vortex_mensajes", [])]);
 
-    // 2) si pusiste FORM_URL, también se envía a tu correo
     if (FORM_URL) {
       try {
         await fetch(FORM_URL, {
@@ -206,7 +203,6 @@ if (formLogin) {
   const login = document.getElementById("login");
   const panel = document.getElementById("panel");
 
-  // muestra el login o el panel según si hay sesión iniciada
   function revisarSesion() {
     const dentro = sessionStorage.getItem("vortex_admin") === "ok";
     login.hidden = dentro;
@@ -241,7 +237,6 @@ if (formLogin) {
 // ===== ADMIN: PRODUCTOS Y MENSAJES =====
 const formProducto = document.getElementById("formProducto");
 if (formProducto) {
-  // evita que un mensaje escrito por un usuario meta HTML en la página
   const limpiar = (t) => String(t).replace(/[&<>"']/g, c =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
@@ -298,7 +293,6 @@ if (formProducto) {
 // ===== ASISTENTE IA: VORTI =====
 const chatCaja = document.getElementById("chat");
 if (chatCaja) {
-  // quita tildes y mayúsculas para entender mejor lo que escribe la persona
   const simple = (t) => t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
   const RESPUESTAS = [
@@ -341,7 +335,7 @@ if (chatCaja) {
   function agregarMensaje(contenido, esUsuario) {
     const burbuja = document.createElement("div");
     burbuja.className = "burbuja" + (esUsuario ? " usuario" : "");
-    if (esUsuario) burbuja.textContent = contenido;   // lo escrito por la persona va como texto
+    if (esUsuario) burbuja.textContent = contenido;
     else burbuja.innerHTML = contenido;
     chatCaja.appendChild(burbuja);
     chatCaja.scrollTop = chatCaja.scrollHeight;
