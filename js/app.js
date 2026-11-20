@@ -4,15 +4,15 @@ const PRODUCTOS_BASE = [
   { id: 2,  nombre: "Camiseta Rockstar",   tipo: "camiseta",  color: "#111111", precio: 75000,  img: "img/camiseta-rockstar.jpg",    desc: "Guitarra con alas sobre el vórtice. Para quienes viven el rock: The Vortex Experience." },
   { id: 3,  nombre: "Camiseta Nébula",     tipo: "camiseta",  color: "#111111", precio: 75000,  img: "img/camiseta-nebula.jpg",      desc: "Galaxia en espiral morada y azul estampada al frente. Cósmica y con mucho color." },
   { id: 4,  nombre: "Camiseta Ruido",      tipo: "camiseta",  color: "#111111", precio: 79000,  img: "img/camiseta-ruido.jpg",       desc: "Espiral blanca rota como estática sobre negro. Actitud alternativa, Static Apparel Co." },
-  { id: 5,  nombre: "Hoodie Abismo",       tipo: "hoodie",    color: "#111111", precio: 159000, img: "img/hoodie-abismo.jpg",        desc: "Hoodie negro con bolsillo canguro y un abismo en espiral estampado. Deep Space Division." },
-  { id: 6,  nombre: "Hoodie Vórtice",      tipo: "hoodie",    color: "#111111", precio: 169000, img: "img/hoodie-vortice.jpg",       desc: "Nuestro insignia: hoodie negro con el vórtice morado brillante y letras desgastadas." },
-  { id: 7,  nombre: "Hoodie Medianoche",   tipo: "hoodie",    color: "#111111", precio: 159000, img: "img/hoodie-medianoche.jpg",    desc: "Cielo de medianoche con luna y estrellas fugaces. Capota amplia y puños anchos." },
-  { id: 8,  nombre: "Pantalón Cargo Flow", tipo: "pantalon",  color: "#111111", precio: 139000, img: "img/pantalon-cargo-flow.jpg",  desc: "Cargo negro con bolsillos laterales, cintas bordadas y logo Vortex." },
-  { id: 9,  nombre: "Jean Wide Dark",      tipo: "pantalon",  color: "#312e81", precio: 149000, img: "img/jean-wide-dark.jpg",       desc: "Jean de corte ancho en denim azul oscuro, con logo Vortex bordado." },
-  { id: 10, nombre: "Chaqueta Vx",         tipo: "chaqueta",  color: "#374151", precio: 289000, img: "img/chaqueta-vx.jpg",          desc: "Chaqueta gris oscuro con cierre completo, bolsillos con cremallera y detalles en los hombros." },
+  { id: 5,  nombre: "Hoodie Abismo",       tipo: "hoodie",    color: "#111111", precio: 119000, img: "img/hoodie-abismo.jpg",        desc: "Hoodie negro con bolsillo canguro y un abismo en espiral estampado. Deep Space Division." },
+  { id: 6,  nombre: "Hoodie Vórtice",      tipo: "hoodie",    color: "#111111", precio: 129000, img: "img/hoodie-vortice.jpg",       desc: "Nuestro insignia: hoodie negro con el vórtice morado brillante y letras desgastadas." },
+  { id: 7,  nombre: "Hoodie Medianoche",   tipo: "hoodie",    color: "#111111", precio: 119000, img: "img/hoodie-medianoche.jpg",    desc: "Cielo de medianoche con luna y estrellas fugaces. Capota amplia y puños anchos." },
+  { id: 8,  nombre: "Pantalón Cargo Flow", tipo: "pantalon",  color: "#111111", precio: 99000,  img: "img/pantalon-cargo-flow.jpg",  desc: "Cargo negro con bolsillos laterales, cintas bordadas y logo Vortex." },
+  { id: 9,  nombre: "Jean Wide Dark",      tipo: "pantalon",  color: "#312e81", precio: 109000, img: "img/jean-wide-dark.jpg",       desc: "Jean de corte ancho en denim azul oscuro, con logo Vortex bordado." },
+  { id: 10, nombre: "Chaqueta Vx",         tipo: "chaqueta",  color: "#374151", precio: 180000, img: "img/chaqueta-vx.jpg",          desc: "Chaqueta gris oscuro con cierre completo, bolsillos con cremallera y detalles en los hombros." },
   { id: 11, nombre: "Gorra Órbita",        tipo: "gorra",     color: "#374151", precio: 49000,  img: "img/gorra-orbita.jpg",         desc: "Gorra gris ajustable con el logo Vortex y órbitas bordadas al frente." },
-  { id: 12, nombre: "Pack Manillas",       tipo: "accesorio", color: "#8b2cf5", precio: 35000,  img: "img/pack-manillas.jpg",        desc: "Pack de 3 manillas resistentes, ligeras y duraderas (negra, blanca y morada), en caja Vortex." }
-];
+  { id: 12, nombre: "Pack Manillas",       tipo: "accesorio", color: "#8b2cf5", precio: 10000,  img: "img/pack-manillas.jpg",        desc: "Pack de 3 manillas resistentes, ligeras y duraderas (negra, blanca y morada), en caja Vortex." }
+  ];
 
 // ===== FUNCIONES ÚTILES =====
 const guardar = (clave, valor) => localStorage.setItem(clave, JSON.stringify(valor));
