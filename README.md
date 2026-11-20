@@ -15,7 +15,7 @@ Proyecto final **"Mi emprendimiento digital"** de Jóvenes creaTIvos (ruta bási
 | Catálogo con filtros, buscador y orden | `pages/catalogo.html` |
 | Detalle de producto con tallas | `pages/producto.html` |
 | Contacto real | `pages/contacto.html` |
-| Panel admin con login | `pages/admin.html` |
+| Panel admin con login (Firebase Authentication) | `pages/admin.html` |
 | IA aplicada (asistente Vorti y recomendador) | `pages/asistente.html` |
 | Historia, equipo y preguntas frecuentes | `pages/nosotros.html` |
 | Publicación en GitHub Pages | enlace de arriba |
@@ -24,33 +24,38 @@ Proyecto final **"Mi emprendimiento digital"** de Jóvenes creaTIvos (ruta bási
 
 - HTML, CSS y JavaScript sin frameworks
 - Diseño estilo cómic, 100 % responsive
-- Datos guardados en el navegador con `localStorage`
+- Firebase: Authentication para el login del admin y Firestore para los mensajes de contacto
+- Productos guardados en el navegador con `localStorage`
 - Control de versiones con Git y GitHub
 
 ## Estructura del proyecto
 
 ```
 vortex/
-├── index.html
 ├── css/
 │   └── style.css
-├── js/
-│   └── app.js
 ├── img/
+├── js/
+│   ├── admin.js
+│   ├── app.js
+│   └── firebase.js
 ├── pages/
-│   ├── catalogo.html
-│   ├── producto.html
-│   ├── nosotros.html
-│   ├── contacto.html
+│   ├── admin.html
 │   ├── asistente.html
-│   └── admin.html
+│   ├── catalogo.html
+│   ├── contacto.html
+│   ├── nosotros.html
+│   └── producto.html
+├── .nojekyll
+├── index.html
 └── README.md
 ```
 
 ## Cómo funciona
 
 - **Catálogo:** los productos viven en `js/app.js`. El admin puede agregar o eliminar y los cambios aparecen en el catálogo.
-- **Contacto:** guarda cada mensaje y lo muestra en el panel admin. Si se pega un enlace de Formspree en `FORM_URL`, también llega al correo.
+- **Contacto:** cada mensaje se guarda en Firestore y se muestra en el panel admin. Si se pega un enlace de Formspree en `FORM_URL`, también llega al correo.
+- **Panel admin:** el acceso es con correo y contraseña mediante Firebase Authentication. Solo el administrador puede leer los mensajes y gestionar los productos.
 - **IA:** Vorti responde por reglas y palabras clave, y el recomendador sugiere prendas según estilo y presupuesto.
 
 ## Cómo correrlo en tu computador
