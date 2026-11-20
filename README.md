@@ -61,4 +61,5 @@ vortex/
 
 ## Contacto
 
-alexanderantunez740@gmail.com · Instagram: @poethicghost
+- **Alexander:** alexanderantunez740@gmail.com · Instagram: @poethicghost
+- **Valeria:** vl449413@gmail.com · Instagram: @valle_152009
